@@ -129,8 +129,9 @@ function dacli_render_labs_html() {
     $output .= '<div class="dacli-grid">';
     
     foreach ( $labs as $lab ) {
-        $base_url_logos = 'https://dacli.net/2c55947a-ca26-4fbc-b4c8-01cb7deb1c7f/';
-        $logo_src = !empty($lab['logo']) ? $base_url_logos . $lab['logo'] : '';
+        //$base_url_logos = 'https://dacli.net/2c55947a-ca26-4fbc-b4c8-01cb7deb1c7f/';
+        //$logo_src = !empty($lab['logo']) ? $base_url_logos . $lab['logo'] : '';
+        $logo_src = !empty($lab['logo']) ? $lab['logo'] : '';
 
         $output .= '<div class="dacli-card">';
         $output .= '<div>';
