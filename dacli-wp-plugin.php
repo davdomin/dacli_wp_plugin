@@ -2,7 +2,7 @@
 /**
  * Plugin Name: DACLI WP Plugin
  * Description: Gestión profesional de laboratorios vía API para dAcli Sistemas.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: David Domínguez
  */
 
@@ -74,11 +74,10 @@ function dacli_get_labs_data() {
         $url = get_option( 'dacli_api_url' );
         if ( empty($url) ) return [];
 
-        // Argumentos para forzar la conexión y evitar bloqueos de SSL o User-Agent
         $args = array(
             'timeout'     => 20,
             'redirection' => 5,
-            'sslverify'   => false, // Útil si hay problemas con certificados SSL
+            'sslverify'   => false, 
             'user-agent'  => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) dAcliBot/1.0',
         );
 
@@ -100,7 +99,6 @@ function dacli_get_labs_data() {
             return [];
         }
 
-        // Guardar en caché para no saturar el servidor
         $cache_min = get_option( 'dacli_cache_time', 60 );
         set_transient( 'dacli_labs_cache', $labs, $cache_min * MINUTE_IN_SECONDS );
     }
@@ -131,16 +129,16 @@ function dacli_render_labs_html() {
     $output .= '<div class="dacli-grid">';
     
     foreach ( $labs as $lab ) {
-        // Base de la URL para los logos almacenados en tu sistema
         $base_url_logos = 'https://dacli.net/2c55947a-ca26-4fbc-b4c8-01cb7deb1c7f/';
         $logo_src = !empty($lab['logo']) ? $base_url_logos . $lab['logo'] : '';
 
         $output .= '<div class="dacli-card">';
-        
         $output .= '<div>';
+        
         if ( !empty($logo_src) ) {
             $output .= '<img src="'. esc_url( $logo_src ) .'" class="dacli-logo" alt="Logo '. esc_attr($lab['nombre_lab_corto']) .'">';
         }
+        
         $output .= '<h3 class="dacli-name">'. esc_html( $lab['nombre_lab'] ) .'</h3>';
         $output .= '<p class="dacli-info"><strong>R.I.F:</strong> '. esc_html( $lab['rif'] ) .'</p>';
         $output .= '<p class="dacli-info"><strong>Ubicación:</strong> '. esc_html( $lab['direccion_lab'] ) .'</p>';
@@ -150,15 +148,16 @@ function dacli_render_labs_html() {
         }
         $output .= '</div>';
 
-        if ( !empty($lab['link_laboratorio']) && $lab['link_laboratorio'] !== 'http:' ) {
-            $output .= '<a href="'. esc_url( $lab['link_laboratorio'] ) .'" target="_blank" class="dacli-btn">Resultados Online</a>';
+        // LÓGICA ACTUALIZADA: Enlace a la web del laboratorio en lugar de link_laboratorio
+        // Nota: Asegúrate de que la clave del JSON sea 'web_laboratorio'
+        if ( !empty($lab['web_laboratorio']) && $lab['web_laboratorio'] !== 'http:' ) {
+            $output .= '<a href="'. esc_url( $lab['web_laboratorio'] ) .'" target="_blank" rel="noopener noreferrer" class="dacli-btn">Visitar Sitio Web</a>';
         }
 
         $output .= '</div>'; 
     }
     
     $output .= '</div>';
-    
     return $output;
 }
 
