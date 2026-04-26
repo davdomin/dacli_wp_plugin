@@ -151,7 +151,7 @@ function dacli_render_labs_html() {
         // LÓGICA ACTUALIZADA: Enlace a la web del laboratorio en lugar de link_laboratorio
         // Nota: Asegúrate de que la clave del JSON sea 'web_laboratorio'
         if ( !empty($lab['web_laboratorio']) && $lab['web_laboratorio'] !== 'http:' ) {
-            $output .= '<a href="'. esc_url( $lab['web_laboratorio'] ) .'" target="_blank" rel="noopener noreferrer" class="dacli-btn">Visitar Sitio Web</a>';
+            $output .= '<a href="'. esc_url( $lab['web_laboratorio'] ) .'" target="_blank" rel="noopener noreferrer">'+ $lab['web_laboratorio']  +'</a>';
         }
 
         $output .= '</div>'; 
