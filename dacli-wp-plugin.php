@@ -141,7 +141,7 @@ function dacli_render_labs_html() {
         }
         
         $output .= '<h3 class="dacli-name">'. esc_html( $lab['nombre_lab'] ) .'</h3>';
-        $output .= '<p class="dacli-info"><strong>R.I.F:</strong> '. esc_html( $lab['rif'] ) .'</p>';
+        $output .= '<p class="dacli-info"> '. esc_html( $lab['rif'] ) .'</p>';
         $output .= '<p class="dacli-info"><strong>Ubicación:</strong> '. esc_html( $lab['direccion_lab'] ) .'</p>';
         
         if ( !empty($lab['testimonio']) ) {
