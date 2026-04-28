@@ -69,7 +69,7 @@ function dacli_settings_page() {
 // 3. FUNCIÓN PARA OBTENER LOS DATOS (LÓGICA DE API)
 function dacli_get_labs_data() {
     $labs = get_transient( 'dacli_labs_cache' );
-
+    $labs = false;
     if ( false === $labs ) {
         $url = get_option( 'dacli_api_url' );
         if ( empty($url) ) return [];
