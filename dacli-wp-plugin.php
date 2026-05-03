@@ -211,10 +211,9 @@ function dacli_render_labs_html( $atts = [] ) {
         $output .= '<div class="dacli-card">';
         $output .= '<div>';
 
-        if ( ! empty( $logo_src ) ) {
-            $output .= '<img src="' . $logo_src . '" class="dacli-logo" alt="Logo ' . $nombre_corto . '">';
-        }
-
+       if ( ! empty( $logo_src ) ) {
+    $output .= '<img src="' . $logo_src . '" class="dacli-logo" alt="Logo ' . $nombre_corto . '" style="display: block; margin-left: auto; margin-right: auto;">';
+}
 
         $output .= '<h3 class="dacli-name">' . $nombre . '</h3>';
 
