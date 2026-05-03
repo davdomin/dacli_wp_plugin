@@ -464,8 +464,7 @@ function dacli_render_labs_html( $atts = [] ) {
             $buttons .= '<a href="' . $web . '" class="dacli-btn" target="_blank" rel="noopener noreferrer">🌐 Visitar sitio web</a>';
         }
         if ( $show_phone && ! empty( $telefono ) ) {
-            $telefono_limpio = preg_replace( '/[^0-9+]/', '', $telefono );
-            $buttons .= '<a href="tel:' . esc_attr( $telefono_limpio ) . '" class="dacli-btn dacli-btn-phone">📞 Llamar</a>';
+            $telefono_limpio = preg_replace( '/[^0-9+]/', '', $telefono );            
         }
 
         if ( ! empty( $buttons ) ) {
