@@ -215,6 +215,7 @@ function dacli_render_labs_html( $atts = [] ) {
             $output .= '<img src="' . $logo_src . '" class="dacli-logo" alt="Logo ' . $nombre_corto . '">';
         }
 
+
         $output .= '<h3 class="dacli-name">' . $nombre . '</h3>';
 
         if ( $show_rif && ! empty( $rif ) ) {
